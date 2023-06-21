@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD de Usuarios</title>
+</head>
+<body>
+    <h1>Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario[0] }}</td>
+                    <td>{{ usuario[1] }}</td>
+                    <td>{{ usuario[2] }}</td>
+                    <td>
+                        <a href="/editar/{{ usuario[0] }}">Editar</a>
+                        <form action="/eliminar/{{ usuario[0] }}" method="post" style="display:inline;">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Agregar Usuario</h2>
+    <form action="/agregar" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>
